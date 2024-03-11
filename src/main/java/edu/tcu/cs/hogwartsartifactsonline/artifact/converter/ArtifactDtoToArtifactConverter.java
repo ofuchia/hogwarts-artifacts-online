@@ -12,7 +12,7 @@ public class ArtifactDtoToArtifactConverter implements Converter<ArtifactDto, Ar
     public Artifact convert(ArtifactDto source) {
 
         Artifact artifact = new Artifact();
-        artifact.setId(source.id()); //just accesss by .id, dont need getters bc its source
+        artifact.setId(source.id()); //just access by .id, dont need getters bc its source
         artifact.setName(source.name());
         artifact.setDescription(source.description());
         artifact.setImageUrl(source.imageUrl());

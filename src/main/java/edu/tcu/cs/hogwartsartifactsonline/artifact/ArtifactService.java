@@ -36,5 +36,27 @@ public class ArtifactService {
 
     }
 
+    public Artifact update(String artifactId, Artifact update){
+            return this.artifactRepository.findById(artifactId)
+                .map(oldArtifact ->{ //if found, run the below
+                    oldArtifact.setName(update.getName());
+                    oldArtifact.setDescription((update.getDescription()));
+                    oldArtifact.setImageUrl(update.getImageUrl());
+                    return this.artifactRepository.save(oldArtifact);
+                })
+                .orElseThrow(() -> new ArtifactNotFoundException(artifactId)); //if not found, throw exception
+
+
+
+    }
+
+    public void delete(String artifactId){
+        this.artifactRepository.findById(artifactId)
+                .orElseThrow(() -> new ArtifactNotFoundException(artifactId));
+        this.artifactRepository.deleteById(artifactId);
+
+
+    }
+
 
 }
