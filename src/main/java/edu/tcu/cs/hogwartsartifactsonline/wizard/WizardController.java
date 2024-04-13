@@ -66,4 +66,9 @@ public class WizardController {
         this.wizardService.delete(wizardId);
         return new Result(true, StatusCode.SUCCESS, "Delete Success");
     }
+    @PutMapping ("/{wizardId}/artifacts/{artifactId}")//changing the ownership
+    public Result assignArtifact(@PathVariable Integer wizardId, @PathVariable String artifactId) {
+        this.wizardService.assignArtifact(wizardId, artifactId);
+        return new Result(true, StatusCode.SUCCESS, "Artifact Assignment Success");
+    }
 }
