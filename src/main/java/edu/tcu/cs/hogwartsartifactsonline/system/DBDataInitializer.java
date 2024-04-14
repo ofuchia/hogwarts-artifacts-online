@@ -112,6 +112,7 @@ public class DBDataInitializer implements CommandLineRunner {
         u3.setEnabled(false);
         u3.setRoles("user");
 
+        //password encryption is in UserService, not UserRepo
         this.userService.save(u1);
         this.userService.save(u2);
         this.userService.save(u3);
