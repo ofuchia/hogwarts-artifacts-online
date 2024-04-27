@@ -1,3 +1,4 @@
+
 package edu.tcu.cs.hogwartsartifactsonline.hogwartsuser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
