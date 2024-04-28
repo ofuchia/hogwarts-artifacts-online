@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-sources[0]:
+            endpoint: ${AZURE_KEY_VAULT_ENDPOINT} #ENV
+  datasource:
+    url: ${datasource-url} #azure mySQL database url; secrets
+    username: ${datasource-username} #admin name of database
+    password: ${datasource-password} #password of database
+  jpa:
+     hibernate:
+       ddl-auto: none #turn of DDL auto generation.
