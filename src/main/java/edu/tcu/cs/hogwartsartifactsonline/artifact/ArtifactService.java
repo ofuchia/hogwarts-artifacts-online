@@ -10,6 +10,8 @@ import edu.tcu.cs.hogwartsartifactsonline.client.ai.chat.dto.ChatResponse;
 import edu.tcu.cs.hogwartsartifactsonline.client.ai.chat.dto.Message;
 import edu.tcu.cs.hogwartsartifactsonline.system.exception.ObjectNotFoundException;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -86,6 +88,9 @@ public class ArtifactService {
         return chatResponse.choices().get(0).message().content();
     }
 
+    public Page<Artifact> findAll(Pageable pageable) {
+        return this.artifactRepository.findAll(pageable);
+    }
 
 
 }
