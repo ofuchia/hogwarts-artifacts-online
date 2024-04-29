@@ -30,7 +30,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Integration tests for Artifact API endpoints")
@@ -50,7 +49,7 @@ class ArtifactControllerIntegrationTest {
     String baseUrl;
 
 
-    @BeforeEach //runs before each test case. sets up authorization
+    @BeforeEach
     void setUp() throws Exception {
 //        ResultActions resultActions = this.mockMvc.perform(post(this.baseUrl + "/auth/login").header(HttpHeaders.AUTHORIZATION,
 //                "Basic " + Base64Utils.encodeToString("john:123456".getBytes())));
@@ -58,12 +57,12 @@ class ArtifactControllerIntegrationTest {
         MvcResult mvcResult = resultActions.andDo(print()).andReturn();
         String contentAsString = mvcResult.getResponse().getContentAsString();
         JSONObject json = new JSONObject(contentAsString);
-        this.token = "Bearer " + json.getJSONObject("data").getString("token"); // "Bearer " as prefix gotta be there.
+        this.token = "Bearer " + json.getJSONObject("data").getString("token"); // Don't forget to add "Bearer " as prefix.
     }
 
     @Test
     @DisplayName("Check findAllArtifacts (GET)")
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD) //resets database before method is called
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
         // Reset H2 database before calling this test case.
     void testFindAllArtifactsSuccess() throws Exception {
         this.mockMvc.perform(get(this.baseUrl + "/artifacts").accept(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, this.token))
@@ -72,7 +71,6 @@ class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("Find All Success"))
                 .andExpect(jsonPath("$.data.content", Matchers.hasSize(6)));
     }
-
 
     @Test
     @DisplayName("Check findArtifactById (GET)")
@@ -83,6 +81,16 @@ class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("Find One Success"))
                 .andExpect(jsonPath("$.data.id").value("1250808601744904191"))
                 .andExpect(jsonPath("$.data.name").value("Deluminator"));
+    }
+
+    @Test
+    @DisplayName("Check findArtifactById with non-existent id (GET)")
+    void testFindArtifactByIdNotFound() throws Exception {
+        this.mockMvc.perform(get(this.baseUrl + "/artifacts/1250808601744904199").accept(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, this.token))
+                .andExpect(jsonPath("$.flag").value(false))
+                .andExpect(jsonPath("$.code").value(StatusCode.NOT_FOUND))
+                .andExpect(jsonPath("$.message").value("Could not find artifact with Id 1250808601744904199 :("))
+                .andExpect(jsonPath("$.data").isEmpty());
     }
 
     @Test
@@ -108,18 +116,7 @@ class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.flag").value(true))
                 .andExpect(jsonPath("$.code").value(StatusCode.SUCCESS))
                 .andExpect(jsonPath("$.message").value("Find All Success"))
-                .andExpect(jsonPath("$.data.content", Matchers.hasSize(7))); //bc added one to database
-    }
-
-
-    @Test
-    @DisplayName("Check findArtifactById with non-existent id (GET)")
-    void testFindArtifactByIdNotFound() throws Exception {
-        this.mockMvc.perform(get(this.baseUrl + "/artifacts/1250808601744904199").accept(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, this.token))
-                .andExpect(jsonPath("$.flag").value(false))
-                .andExpect(jsonPath("$.code").value(StatusCode.NOT_FOUND))
-                .andExpect(jsonPath("$.message").value("Could not find artifact with Id 1250808601744904199 :("))
-                .andExpect(jsonPath("$.data").isEmpty());
+                .andExpect(jsonPath("$.data.content", Matchers.hasSize(7)));
     }
 
     @Test
@@ -276,4 +273,5 @@ class ArtifactControllerIntegrationTest {
                 .andExpect(jsonPath("$.message").value("Search Success"))
                 .andExpect(jsonPath("$.data.content", Matchers.hasSize(1)));
     }
+
 }
