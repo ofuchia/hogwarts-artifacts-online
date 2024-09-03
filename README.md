@@ -10,15 +10,15 @@ Through building this project, I leared how to frame user stories, craft REST AP
 
 Gain practical experience in:
 
-Dependency Injection and the use of Spring Framework's core container.
-Building the web layer with Spring MVC (Model-View-Controller).
-Data persistence in relational databases using Spring Data JPA (Jakarta Persistence API).
-User authentication and authorization with Spring Security and JWT (JSON Web Tokens).
-Deploying a Spring Boot application to a cloud platform with Spring Cloud Azure.
-Monitoring a running Spring Boot application in the production with Spring Boot Actuator.
-Making requests to OpenAI API with RestClient.
-Paging and sorting.
-Writing dynamic queries with Spring Data JPA Specifications.
+- Dependency Injection and the use of Spring Framework's core container.
+- Building the web layer with Spring MVC (Model-View-Controller).
+- Data persistence in relational databases using Spring Data JPA (Jakarta Persistence API).
+- User authentication and authorization with Spring Security and JWT (JSON Web Tokens).
+- Deploying a Spring Boot application to a cloud platform with Spring Cloud Azure.
+- Monitoring a running Spring Boot application in the production with Spring Boot Actuator.
+- Making requests to OpenAI API with RestClient.
+- Paging and sorting.
+- Writing dynamic queries with Spring Data JPA Specifications.
 
 Emphasized good software engineering practices, such as:
 
