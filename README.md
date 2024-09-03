@@ -22,9 +22,9 @@ Gain practical experience in:
 
 Emphasized good software engineering practices, such as:
 
-Defining software requirements with User Stories.
-Version control and project planning using Git and GitHub.
-The API-First Approach in designing effective REST APIs.
-Test-Driven Development (TDD): writing tests first, then coding to pass the tests, and refactoring.
-Object-Oriented Design with UML.
-CI/CD (Continuous Integration and Continuous Delivery) with GitHub Actions.
+- Defining software requirements with User Stories.
+- Version control and project planning using Git and GitHub.
+- The API-First Approach in designing effective REST APIs.
+- Test-Driven Development (TDD): writing tests first, then coding to pass the tests, and refactoring.
+- Object-Oriented Design with UML.
+- CI/CD (Continuous Integration and Continuous Delivery) with GitHub Actions.
