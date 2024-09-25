@@ -8,7 +8,7 @@ Throughout the course, Hogwarts Artifacts Online serves as a running example and
 
 Through building this project, I leared how to frame user stories, craft REST APIs and apply object-oriented design principles. Embracing test-driven development, I built and refined each feature. At the end, I set up a comprehensive CI/CD pipeline, ensuring smooth deployment of the application.
 
-Gain practical experience in:
+Gained practical experience in:
 
 - Dependency Injection and the use of Spring Framework's core container.
 - Building the web layer with Spring MVC (Model-View-Controller).
